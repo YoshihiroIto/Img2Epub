@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uuid_id">
+    <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <dc:title id="id">{{title}}</dc:title>
+    </metadata>
+    <manifest>
+        <item id="page_css" href="page_styles.css" media-type="text/css"/>
+        <item id="css" href="stylesheet.css" media-type="text/css"/>
+        
+        {{ for jpeg in jpegs }} 
+            <item id="id{{ jpeg.id }}" href="images/{{ jpeg.path }}" media-type="image/jpeg" />
+        {{ end }}
+        
+        {{ for html in htmls }} 
+            <item id="id{{ html.id }}" href="text/{{ html.path }}" media-type="application/xhtml+xml" properties="svg" />
+        {{ end }}
+    </manifest>
+    <spine page-progression-direction="rtl">
+        <itemref idref="titlepage"/>
+
+        {{ for html in htmls }} 
+            <itemref idref="id{{ html.id }}"/>
+        {{ end }}
+    </spine>
+</package>

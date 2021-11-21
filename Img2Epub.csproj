@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\container.xml" />
+    <EmbeddedResource Include="Resources\content.opf" />
+    <EmbeddedResource Include="Resources\mimetype" />
+    <EmbeddedResource Include="Resources\page.html" />
+    <EmbeddedResource Include="Resources\page_styles.css" />
+    <EmbeddedResource Include="Resources\stylesheet.css" />
+    <EmbeddedResource Include="Resources\titlepage.xhtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Scriban" Version="5.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.4" />
+  </ItemGroup>
+</Project>
