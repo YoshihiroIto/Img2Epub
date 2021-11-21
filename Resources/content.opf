@@ -2,10 +2,13 @@
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uuid_id">
     <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <dc:title id="id">{{title}}</dc:title>
+        <meta name="cover" content="cover"/>
+        <meta name="primary-writing-mode" content="horizontal-rl"/>
     </metadata>
     <manifest>
         <item id="page_css" href="page_styles.css" media-type="text/css"/>
         <item id="css" href="stylesheet.css" media-type="text/css"/>
+        <item id="cover" href="images/{{ cover_path }}" media-type="image/jpeg" properties="cover-image"/>
         
         {{ for jpeg in jpegs }} 
             <item id="id{{ jpeg.id }}" href="images/{{ jpeg.path }}" media-type="image/jpeg" />

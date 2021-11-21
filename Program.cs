@@ -78,7 +78,7 @@ static string MakeContentOpf(string title, string[] imageFilepaths)
     var jpegs = imageFilepaths.Select(x => new { Path = Path.GetFileName(x), Id = index++ }).ToArray();
     var htmls = imageFilepaths.Select(x => new { Path = Path.GetFileNameWithoutExtension(x) + ".html", Id = index++ }).ToArray();
 
-    return template.Render(new { Title = title, Jpegs = jpegs, Htmls = htmls });
+    return template.Render(new { Title = title, Jpegs = jpegs, Htmls = htmls, CoverPath = jpegs[0].Path });
 }
 
 static string MakeTitlepageXhtml(string imageFilepath)
