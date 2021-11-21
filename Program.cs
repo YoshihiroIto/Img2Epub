@@ -24,15 +24,15 @@ foreach (var srcDir in args)
 
     using var archive = ZipFile.Open(dstFile, ZipArchiveMode.Create);
 
-    AddString(archive, @"META-INF/container.xml", ReadResource("container.xml"));
-    AddString(archive, @"content.opf", MakeContentOpf(title, images));
-    AddString(archive, @"mimetype", ReadResource("mimetype"));
-    AddString(archive, @"page_styles.css", ReadResource("page_styles.css"));
-    AddString(archive, @"stylesheet.css", ReadResource("stylesheet.css"));
-    AddString(archive, @"titlepage.xhtml", MakeTitlepageXhtml(images[0]));
+    AddTextFile(archive, @"META-INF/container.xml", ReadResource("container.xml"));
+    AddTextFile(archive, @"content.opf", MakeContentOpf(title, images));
+    AddTextFile(archive, @"mimetype", ReadResource("mimetype"));
+    AddTextFile(archive, @"page_styles.css", ReadResource("page_styles.css"));
+    AddTextFile(archive, @"stylesheet.css", ReadResource("stylesheet.css"));
+    AddTextFile(archive, @"titlepage.xhtml", MakeTitlepageXhtml(images[0]));
 
     foreach (var page in pages)
-        AddString(archive, "text/" + page.Path, page.Text);
+        AddTextFile(archive, "text/" + page.Path, page.Text);
 
     foreach (var image in images)
         AddBinaryFile(archive, "images/" + Path.GetFileName(image), image);
@@ -41,7 +41,7 @@ foreach (var srcDir in args)
 return 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////
-static void AddString(ZipArchive archive, string dstPath, string srcData)
+static void AddTextFile(ZipArchive archive, string dstPath, string srcData)
 {
     var entity = archive.CreateEntry(dstPath);
 
